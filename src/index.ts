@@ -1,4 +1,6 @@
 import express from 'express';
+import swaggerUi from 'swagger-ui-express';
+import { opApiSpec } from './openapispec';
 
 const app = express();
 const port = 3000;
@@ -21,6 +23,7 @@ app.get('/users', (req, res) => {
     }
 });
 
+app.use('/documentation', swaggerUi.serve, swaggerUi.setup(opApiSpec));
 app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
 });
